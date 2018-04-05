@@ -27,7 +27,7 @@ int main()
   c23 = cos(jt[2])*cos(jt[3]) - sin(jt[2])*sin(jt[3]);
   s23 = cos(jt[2])*sin(jt[3]) + sin(jt[2])*cos(jt[3]);
 
-  printf("c23 = %lf, s23 = %lf\n\n", c23, s23);
+  printf("\n");
 
   // T[i][j] corresponds to r_ij
 
@@ -52,9 +52,9 @@ int main()
   px = cos(jt[1]) * (a[2]*cos(jt[2]) + a[3]*c23 - d[4]*s23) - d[3]*sin(jt[1]);
   py = sin(jt[1]) * (a[2]*cos(jt[2]) + a[3]*c23 - d[4]*s23) + d[3]*cos(jt[1]);
   pz = -a[3]*s23 - a[2]*sin(jt[2]) - d[4]*c23;
-  T[1][4] = px;
-  T[2][4] = py;
-  T[3][4] = pz + 125;
+  T[1][4] = 125*T[1][3] + px;
+  T[2][4] = 125*T[2][3] + py;
+  T[3][4] = 125*T[3][3] + pz;
 
   // Finding the (O, A, T) angles
 
@@ -79,7 +79,7 @@ int main()
     O = atan2(T[1][1],T[1][2]);
   }
 
-  // Convert to degrees and print
+  // Convert the (O, A, T) angles to degrees and print
 
   degO = O * 180.0 / M_PI;
   degA = A * 180.0 / M_PI;
